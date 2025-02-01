@@ -364,7 +364,6 @@ respective companies.</xccdf-1.2:rear-matter>
       <xccdf-1.2:Profile id="xccdf_org.ssgproject.content_profile_test_profile">
         <xccdf-1.2:title override="true">Test Profile</xccdf-1.2:title>
         <xccdf-1.2:description override="true">This profile is only used for Unit Tests</xccdf-1.2:description>
-        <xccdf-1.2:select idref="xccdf_org.ssgproject.content_rule_account_password_selinux_faillock_dir" selected="true"/>
         <xccdf-1.2:select idref="xccdf_org.ssgproject.content_rule_package_telnet-server_removed" selected="true"/>
         <xccdf-1.2:select idref="xccdf_org.ssgproject.content_rule_package_telnet_removed" selected="true"/>
         <xccdf-1.2:select idref="xccdf_org.ssgproject.content_rule_set_password_hashing_algorithm_logindefs" selected="true"/>
@@ -378,7 +377,6 @@ respective companies.</xccdf-1.2:rear-matter>
       </xccdf-1.2:Profile>
       <xccdf-1.2:Profile id="xccdf_org.ssgproject.content_profile_test_profile_no_title">
         <xccdf-1.2:description override="true">This profile is only used for Unit Tests</xccdf-1.2:description>
-        <xccdf-1.2:select idref="xccdf_org.ssgproject.content_rule_account_password_selinux_faillock_dir" selected="true"/>
         <xccdf-1.2:select idref="xccdf_org.ssgproject.content_rule_package_telnet-server_removed" selected="true"/>
         <xccdf-1.2:select idref="xccdf_org.ssgproject.content_rule_package_telnet_removed" selected="true"/>
         <xccdf-1.2:select idref="xccdf_org.ssgproject.content_rule_set_password_hashing_algorithm_logindefs" selected="true"/>
@@ -392,7 +390,6 @@ respective companies.</xccdf-1.2:rear-matter>
       </xccdf-1.2:Profile>
       <xccdf-1.2:Profile id="xccdf_org.ssgproject.content_profile_test_profile_no_description">
         <xccdf-1.2:title override="true">Test Profile No Description</xccdf-1.2:title>
-        <xccdf-1.2:select idref="xccdf_org.ssgproject.content_rule_account_password_selinux_faillock_dir" selected="true"/>
         <xccdf-1.2:select idref="xccdf_org.ssgproject.content_rule_package_telnet-server_removed" selected="true"/>
         <xccdf-1.2:select idref="xccdf_org.ssgproject.content_rule_package_telnet_removed" selected="true"/>
         <xccdf-1.2:select idref="xccdf_org.ssgproject.content_rule_set_password_hashing_algorithm_logindefs" selected="true"/>
