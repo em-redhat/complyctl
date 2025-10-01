@@ -70,7 +70,6 @@ func TestEnsureUserWorkspace(t *testing.T) {
 
 	err = os.Chmod(tmpDir, 0500) // read + execute only, no write
 	require.NoError(t, err, "failed to chmod parent dir")
-	defer os.Chmod(tmpDir, 0755) // restore permissions so TempDir cleanup works
 
 	// Try to create the user workspace again but now it should fail
 	err = EnsureUserWorkspace(testPlanPath)
