@@ -54,7 +54,6 @@ func TestFindComponentDefinitions(t *testing.T) {
 func TestEnsureUserWorkspace(t *testing.T) {
 	tmpDir := t.TempDir()
 	testPlanPath := filepath.Join(tmpDir, "test_workspace")
-	defer os.RemoveAll(tmpDir) // Clean up after test
 
 	err := EnsureUserWorkspace(testPlanPath)
 	require.NoError(t, err)
