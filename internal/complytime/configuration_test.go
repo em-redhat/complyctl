@@ -54,13 +54,24 @@ func TestFindComponentDefinitions(t *testing.T) {
 func TestEnsureUserWorkspace(t *testing.T) {
 	tmpDir := t.TempDir()
 	testPlanPath := filepath.Join(tmpDir, "test_workspace")
-	defer os.RemoveAll(tmpDir) // Clean up after test
 
+	// Ensure user workspace directory is properly created
 	err := EnsureUserWorkspace(testPlanPath)
 	require.NoError(t, err)
 
 	info, err := os.Stat(testPlanPath)
 	require.NoError(t, err)
 	require.NotNil(t, info)
-	require.True(t, info.IsDir(), "Expected a directory, got something else")
+	require.True(t, info.IsDir(), "expected a directory, got something else")
+
+	// Now lets remove the created directory and set the parent dir as read-only
+	err = os.RemoveAll(testPlanPath)
+	require.NoError(t, err, "failed to remove test_workspace directory")
+
+	err = os.Chmod(tmpDir, 0500) // read + execute only, no write
+	require.NoError(t, err, "failed to chmod parent dir")
+
+	// Try to create the user workspace again but now it should fail
+	err = EnsureUserWorkspace(testPlanPath)
+	require.Error(t, err, "expected error when trying to create dir in read-only parent")
 }
