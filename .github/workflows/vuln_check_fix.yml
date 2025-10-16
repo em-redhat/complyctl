@@ -7,7 +7,7 @@ name: Vulnerability-check-fix
 on:
   schedule:
     - cron: "0 0 * * *"
-  workflow_dispatch: 
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -97,7 +97,7 @@ jobs:
       - name: Create PR or update the existing PR
         if: env.FIXED_VERSION != ''
         run: |
-          OWNER="complytime" 
+          OWNER="complytime"
           REPO="complyctl"
           action_run="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           PR_BODY="Bump golang version to ${{ env.FIXED_VERSION }} to fix the findings from job $action_run"

@@ -17,6 +17,7 @@ import (
 
 	"github.com/complytime/complyctl/cmd/complyctl/option"
 	"github.com/complytime/complyctl/internal/complytime"
+	"github.com/complytime/complyctl/internal/terminal"
 )
 
 const assessmentResultsLocationJson = "assessment-results.json"
@@ -108,10 +109,17 @@ func runScan(cmd *cobra.Command, opts *scanOptions) error {
 	}
 	logger.Info(fmt.Sprintf("Successfully loaded %v plugin(s).", len(plugins)))
 
+	logger.Info("Scanning (this may take some time depending on the system and controls)...")
+	stopSpinner := make(chan int)
+	go terminal.ShowSpinner(stopSpinner)
+
 	allResults, err := actions.AggregateResults(cmd.Context(), inputContext, plugins)
+	stopSpinner <- 1
+
 	if err != nil {
 		return err
 	}
+	logger.Info("Scan completed successfully.")
 
 	// Collect results in a single report
 	planHref := fmt.Sprintf("file://%s", apCleanedPath)
