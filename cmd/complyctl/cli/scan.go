@@ -109,7 +109,7 @@ func runScan(cmd *cobra.Command, opts *scanOptions) error {
 	}
 	logger.Info(fmt.Sprintf("Successfully loaded %v plugin(s).", len(plugins)))
 
-	logger.Info("Scanning environment (this may take several minutes)...")
+	logger.Info("Scanning (this may take some time depending on the system and controls)...")
 	stopSpinner := make(chan int)
 	go terminal.ShowSpinner(stopSpinner)
 
