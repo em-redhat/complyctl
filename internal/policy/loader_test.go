@@ -154,7 +154,7 @@ func seedTestPolicy(t *testing.T, policyID, version string) *Loader {
 	require.NoError(t, os.MkdirAll(cacheDir, 0755))
 
 	mock := cachetest.NewMockPolicySource()
-	mock.SeedPolicy(policyID, version, "sha256:test-digest")
+	mock.SeedPolicy(policyID, version, cachetest.DigestA)
 
 	cacheMgr := cache.NewCache(cacheDir)
 	state, err := cache.LoadState(cacheDir)
@@ -201,7 +201,7 @@ func seedBundlePolicy(t *testing.T, policyID, version string, files []bundle.Fil
 	require.NoError(t, os.MkdirAll(cacheDir, 0755))
 
 	mock := cachetest.NewMockBundlePolicySource()
-	mock.SeedBundlePolicy(policyID, version, "sha256:bundle-digest", files)
+	mock.SeedBundlePolicy(policyID, version, cachetest.DigestB, files)
 
 	cacheMgr := cache.NewCache(cacheDir)
 	state, err := cache.LoadState(cacheDir)

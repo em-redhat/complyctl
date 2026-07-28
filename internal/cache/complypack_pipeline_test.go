@@ -14,6 +14,7 @@ import (
 	"github.com/stretchr/testify/require"
 
 	"github.com/complytime/complyctl/internal/cache"
+	"github.com/complytime/complyctl/internal/cache/cachetest"
 	"github.com/complytime/complyctl/internal/complytime"
 	"github.com/complytime/complyctl/pkg/provider"
 )
@@ -41,7 +42,7 @@ func TestComplypackPipeline_SyncLookupGenerate(t *testing.T) {
 		"example.com/complypacks/test-bundle",
 		"io.complytime.test",
 		"1.0.0",
-		"sha256:pipeline-test-digest",
+		cachetest.DigestE,
 		"test policy content for pipeline integration",
 	)
 
@@ -93,7 +94,7 @@ func TestComplypackPipeline_SyncLookupGenerate(t *testing.T) {
 
 	ps, exists := loadedState.GetComplypackState("example.com/complypacks/test-bundle")
 	require.True(t, exists, "complypack state should exist for synced repository")
-	assert.Equal(t, "sha256:pipeline-test-digest", ps.Digest)
+	assert.Equal(t, cachetest.DigestE, ps.Digest)
 	assert.Equal(t, "1.0.0", ps.Version)
 
 	// --- Phase 4: LookupByEvaluatorID returns non-empty content path ---
@@ -173,14 +174,14 @@ func TestComplypackPipeline_MultipleEvaluators(t *testing.T) {
 		"example.com/complypacks/opa-bundle",
 		"io.complytime.opa",
 		"1.0.0",
-		"sha256:opa-digest",
+		cachetest.DigestF,
 		"opa policy content",
 	)
 	mock.seedComplypack(
 		"example.com/complypacks/kyverno-bundle",
 		"io.complytime.kyverno",
 		"2.0.0",
-		"sha256:kyverno-digest",
+		"sha256:c2d3e4f5a67890b1c2d3e4f5a67890b1c2d3e4f5a67890b1c2d3e4f5a67890b1",
 		"kyverno policy content",
 	)
 
